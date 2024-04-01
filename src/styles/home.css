@@ -98,10 +98,19 @@
     font-size: 2rem;
     cursor: pointer;
     transition: .5s all;
+    backdrop-filter: blur(10px);
+    border-radius: 2.5rem;
+    margin-right: 2rem;
+    outline: none; /* 포커스 시 브라우저 기본 아웃라인 제거 */
 }
 
 .header-nav>nav>ul>li:hover {
     color: #eee;
+}
+
+nav li.active {
+    color: #eee;
+    border: 0.5px solid rgba(255, 255, 255, 0.3);
 }
 
 .lightmode {
@@ -128,3 +137,4 @@
 section {
     height: 100vh;
 }
+
