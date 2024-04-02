@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import Background from '../../components/Background';
 import '../../styles/home.css'
+import Homecmpt from '../../components/Homecmpt';
+import Portfolio from '../../components/Portfolio';
+import Contact from '../../components/Contact';
+import Aboutme from '../../components/Aboutme';
+import Skill from '../../components/Skill';
 
 export default function Home() {
 
@@ -9,7 +14,7 @@ export default function Home() {
     const scrollCallBack = (targetId) => {
         document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
     }
-    
+
     useEffect(() => {
         const handleScroll = () => {
             const aboutMeSection = document.getElementById('aboutme');
@@ -48,7 +53,6 @@ export default function Home() {
                                 <li className={position === 'home' ? 'active' : ''}
                                     onClick={() => {
                                         scrollCallBack('home')
-
                                     }}><p>Home</p></li>
                                 <li className={position === 'aboutme' ? 'active' : ''}
                                     onClick={() => {
@@ -58,12 +62,10 @@ export default function Home() {
                                 <li className={position === 'portfolio' ? 'active' : ''}
                                     onClick={() => {
                                         scrollCallBack('portfolio')
-
                                     }}><p>Portfolio</p></li>
                                 <li className={position === 'contact' ? 'active' : ''}
                                     onClick={() => {
                                         scrollCallBack('contact')
-
                                     }}><p>Contact</p></li>
                             </ul>
                         </nav>
@@ -79,18 +81,23 @@ export default function Home() {
                     <div className='container-content'>
 
                         <section id='home'>
-
+                            <Homecmpt />
                         </section>
 
                         <section id='aboutme' >
-
+                            <Aboutme scrollCallBack={scrollCallBack} />
                         </section>
+
+                        <div className='skill-section'>
+                            <Skill />
+                        </div>
 
                         <section id='portfolio'>
-
+                            <Portfolio />
                         </section>
-                        <section id='contact'>
 
+                        <section id='contact'>
+                            <Contact />
                         </section>
                     </div>
                 </div>
