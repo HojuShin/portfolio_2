@@ -81,11 +81,10 @@ export default function Home() {
                     <div className='container-content'>
 
                         <section id='home'>
-                            <Homecmpt />
+                            <Homecmpt scrollCallBack={scrollCallBack}/>
                         </section>
-
                         <section id='aboutme' >
-                            <Aboutme scrollCallBack={scrollCallBack} />
+                            <Aboutme />
                         </section>
 
                         <div className='skill-section'>
@@ -102,7 +101,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            <div className="noise"></div>
+            {/* <div className="noise"></div> */}
         </>
     );
 }
