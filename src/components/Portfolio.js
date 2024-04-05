@@ -1,9 +1,4 @@
-import { useDeferredValue, useEffect, useState } from 'react'
-import watflix from '../assets/mockup.png'
-import apple from '../assets/mockup2.png'
-import gentle from '../assets/mockup3.png'
-import pro from '../assets/mockup4.png'
-import portfolio01 from '../assets/mockup5.png'
+import { useEffect, useState } from 'react'
 import { ScrollAnimation } from "@lasbe/react-scroll-animation";
 import Modal from './Modal'
 
@@ -20,7 +15,7 @@ export default function Portfolio() {
         setModal(!modal);
         // 모달이 열린 경우 URL에 #modal 추가, 닫힌 경우 #modal 제거
         if (!modal) {
-            window.history.pushState(null, null, '#modal');
+            window.history.pushState(null, null, 'project');
         } else {
             window.history.pushState(null, null, window.location.pathname)
         }
@@ -43,11 +38,14 @@ export default function Portfolio() {
         fetchData();
     }, []); // 빈 배열을 전달하여 마운트될 때만 실행되도록 함.
 
+    console.log(project)
+
+
     return (
         <div className='portfolio-block'>
             <ScrollAnimation
                 startingPoint="bottom"
-                duration={1}
+                duration={0.5}
                 amount="xl"
                 delay={0.1}
                 repeat={false}
@@ -56,129 +54,37 @@ export default function Portfolio() {
                     <h2>Check my projects</h2>
                 </div>
             </ScrollAnimation>
+
             <div className='portfolio-projects'>
-                <ScrollAnimation
-                    startingPoint="bottom"
-                    duration={1}
-                    amount="xl"
-                    delay={0.2}
-                    repeat={false}
-                >
-                    <div className='project' onClick={toggle}>
-                        <div className='project-mockup'>
-                            <img src={pro} alt='watflix' />
-                        </div>
-                        <div className='project-btn'>
-                            <div className='view-btn'>
-                                <p>Learn more</p>
-                                <span className="material-symbols-outlined">arrow_forward</span>
-                            </div>
-                        </div>
-                    </div>
-                </ScrollAnimation>
-
-                <ScrollAnimation
-                    startingPoint="bottom"
-                    duration={1}
-                    amount="xl"
-                    delay={0.3}
-                    repeat={false}
-                >
-                    <div className='project' onClick={toggle}>
-                        <div className='project-mockup'>
-                            <img src={watflix} alt='watflix' />
-                        </div>
-                        <div className='project-btn'>
-                            <div className='view-btn'>
-                                <p>Learn more</p>
-                                <span className="material-symbols-outlined">arrow_forward</span>
-                            </div>
-                        </div>
-                    </div>
-                </ScrollAnimation>
-
-                <ScrollAnimation
-                    startingPoint="bottom"
-                    duration={1}
-                    amount="xl"
-                    delay={0.4}
-                    repeat={false}
-                >
-                    <div className='project' onClick={toggle}>
-                        <div className='project-mockup'>
-                            <img src={apple} alt='watflix' />
-                        </div>
-                        <div className='project-btn'>
-                            <div className='view-btn'>
-                                <p>Learn more</p>
-                                <span className="material-symbols-outlined">arrow_forward</span>
-                            </div>
-                        </div>
-                    </div>
-                </ScrollAnimation>
-
-                <ScrollAnimation
-                    startingPoint="bottom"
-                    duration={1}
-                    amount="xl"
-                    delay={0.5}
-                    repeat={false}
-                >
-                    <div className='project' onClick={toggle}>
-                        <div className='project-mockup'>
-                            <img src={gentle} alt='watflix' />
-                        </div>
-                        <div className='project-btn'>
-                            <div className='view-btn'>
-                                <p>Learn more</p>
-                                <span className="material-symbols-outlined">arrow_forward</span>
-                            </div>
-                        </div>
-                    </div>
-                </ScrollAnimation>
-
-                <ScrollAnimation
-                    startingPoint="bottom"
-                    duration={1}
-                    amount="xl"
-                    delay={0.6}
-                    repeat={false}
-                >
-                    <div className='project' onClick={toggle}>
-                        <div className='project-mockup'>
-                            <img src={portfolio01} alt='portfolio' />
-                        </div>
-                        <div className='project-btn'>
-                            <div className='view-btn'>
-                                <p>Learn more</p>
-                                <span className="material-symbols-outlined">arrow_forward</span>
-                            </div>
-                        </div>
-                    </div>
-                </ScrollAnimation>
-
-                <ScrollAnimation
-                    startingPoint="bottom"
-                    duration={1}
-                    amount="xl"
-                    delay={0.7}
-                    repeat={false}
-                >
-                    <div className='project' onClick={toggle}>
-                        <div className='project-mockup'>
-                            <img src={watflix} alt='watflix' />
-                        </div>
-                        <div className='project-btn'>
-                            <div className='view-btn'>
-                                <p>Learn more</p>
-                                <span className="material-symbols-outlined">arrow_forward</span>
-                            </div>
-                        </div>
-                    </div>
-                </ScrollAnimation>
+                {
+                    project.map((project, index) => {
+                        return (
+                            <ScrollAnimation
+                                startingPoint="bottom"
+                                duration={0.5}
+                                amount="xl"
+                                delay={0.1 * (index + 1)} 
+                                repeat={false}
+                            >
+                                <div className='project' onClick={toggle} key={index}>
+                                    <div className='project-mockup'>
+                                        <img src={project.img} alt='project' />
+                                    </div>
+                                    <div className='project-btn'>
+                                        <div className='view-btn'>
+                                            <p>Learn more</p>
+                                            <span className="material-symbols-outlined">arrow_forward</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ScrollAnimation>
+                        )
+                    })
+                }
+                
             </div>
 
-            {modal ? <Modal /> : null}
+            {modal ? <Modal project={project} setModal={setModal} /> : null}
         </div>
 
     )
