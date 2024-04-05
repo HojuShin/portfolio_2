@@ -9,17 +9,15 @@ export default function Portfolio() {
     // 프로젝트 데이터 저장 상태
     const [project, setProject] = useState([]);
 
-    // 모달 열고 닫는 함수 정의
-    const toggle = () => {
-        // modal 상태값을 현재의 반대로 변경
+    // 모달을 토글하는 함수
+    const toggleModal = (id) => {
         setModal(!modal);
-        // 모달이 열린 경우 URL에 #modal 추가, 닫힌 경우 #modal 제거
         if (!modal) {
-            window.history.pushState(null, null, 'project');
+            window.history.pushState(null, null, `${id}`)
         } else {
-            window.history.pushState(null, null, window.location.pathname)
+            window.history.back()
         }
-    }
+    };
 
     useEffect(() => {
         // 데이터 비동기적으로 가져오는 함수
@@ -38,9 +36,6 @@ export default function Portfolio() {
         fetchData();
     }, []); // 빈 배열을 전달하여 마운트될 때만 실행되도록 함.
 
-    console.log(project)
-
-
     return (
         <div className='portfolio-block'>
             <ScrollAnimation
@@ -54,7 +49,6 @@ export default function Portfolio() {
                     <h2>Check my projects</h2>
                 </div>
             </ScrollAnimation>
-
             <div className='portfolio-projects'>
                 {
                     project.map((project, index) => {
@@ -63,10 +57,10 @@ export default function Portfolio() {
                                 startingPoint="bottom"
                                 duration={0.5}
                                 amount="xl"
-                                delay={0.1 * (index + 1)} 
+                                delay={0.1 * (index + 1)}
                                 repeat={false}
                             >
-                                <div className='project' onClick={toggle} key={index}>
+                                <div className='project' onClick={() => toggleModal(project.id)} key={index}>
                                     <div className='project-mockup'>
                                         <img src={project.img} alt='project' />
                                     </div>
@@ -81,10 +75,10 @@ export default function Portfolio() {
                         )
                     })
                 }
-                
+
             </div>
 
-            {modal ? <Modal project={project} setModal={setModal} /> : null}
+            {modal ? <Modal project={project} toggleModal={toggleModal} /> : null}
         </div>
 
     )
