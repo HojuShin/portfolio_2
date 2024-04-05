@@ -8,17 +8,21 @@ export default function Portfolio() {
     const [modal, setModal] = useState(false);
     // 프로젝트 데이터 저장 상태
     const [project, setProject] = useState([]);
+    // 현재 url 값과 일치하는 데이터 저장
+    const [mtcDt, setMtcDt] = useState('');
 
     // 모달을 토글하는 함수
-    const toggleModal = (id) => {
+    const toggleModal = (project) => {
         setModal(!modal);
+        setMtcDt(project)
+
         if (!modal) {
-            window.history.pushState(null, null, `${id}`)
+            window.history.pushState(null, null, `${project.id}`)
         } else {
             window.history.back()
         }
     };
-
+    
     useEffect(() => {
         // 데이터 비동기적으로 가져오는 함수
         const fetchData = async () => {
@@ -31,7 +35,6 @@ export default function Portfolio() {
                 console.error('Error fetching movie data:', error);
             }
         };
-
         // 컴포넌트가 마운트될 때 fetchData 함수를 호출하여 데이터를 가져dha
         fetchData();
     }, []); // 빈 배열을 전달하여 마운트될 때만 실행되도록 함.
@@ -60,7 +63,7 @@ export default function Portfolio() {
                                 delay={0.1 * (index + 1)}
                                 repeat={false}
                             >
-                                <div className='project' onClick={() => toggleModal(project.id)} key={index}>
+                                <div className='project' onClick={() => toggleModal(project)} key={index}>
                                     <div className='project-mockup'>
                                         <img src={project.img} alt='project' />
                                     </div>
@@ -75,10 +78,9 @@ export default function Portfolio() {
                         )
                     })
                 }
-
             </div>
 
-            {modal ? <Modal project={project} toggleModal={toggleModal} /> : null}
+            {modal ? <Modal mtcDt={mtcDt} toggleModal={toggleModal} /> : null}
         </div>
 
     )
