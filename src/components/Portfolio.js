@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useDeferredValue, useEffect, useState } from 'react'
 import watflix from '../assets/mockup.png'
 import apple from '../assets/mockup2.png'
 import gentle from '../assets/mockup3.png'
@@ -11,6 +11,8 @@ export default function Portfolio() {
 
     // 모달 상태값 
     const [modal, setModal] = useState(false);
+    // 프로젝트 데이터 저장 상태
+    const [project, setProject] = useState([]);
 
     // 모달 열고 닫는 함수 정의
     const toggle = () => {
@@ -23,6 +25,23 @@ export default function Portfolio() {
             window.history.pushState(null, null, window.location.pathname)
         }
     }
+
+    useEffect(() => {
+        // 데이터 비동기적으로 가져오는 함수
+        const fetchData = async () => {
+            try {
+                const response = await fetch('https://hojushin.github.io/data/project.json');
+                const result = await response.json();
+                setProject(result);
+
+            } catch (error) {
+                console.error('Error fetching movie data:', error);
+            }
+        };
+
+        // 컴포넌트가 마운트될 때 fetchData 함수를 호출하여 데이터를 가져dha
+        fetchData();
+    }, []); // 빈 배열을 전달하여 마운트될 때만 실행되도록 함.
 
     return (
         <div className='portfolio-block'>
