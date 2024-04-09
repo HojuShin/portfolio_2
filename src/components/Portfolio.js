@@ -48,6 +48,29 @@ export default function Portfolio() {
         fetchData();
     }, []); // 빈 배열을 전달하여 마운트될 때만 실행되도록 함.
 
+    // 버튼 외부를 클릭하면 모달창 닫기
+    useEffect(() => {
+        // 클릭 이벤트가 발생했을 때 호출되는 함수 
+        const handleOutsideClick = (event) => {
+            // portfolio-projects 요소 가져오기
+            const projectButton = document.querySelector('.portfolio-projects');
+            //projectButton이 존재하고, 그리고 사용자가 클릭한 대상이 projectButton의 하위 요소가 아니라면
+            if (projectButton && !projectButton.contains(event.target)) {
+                //모달창 영역을 닫기 위해 Modal 상태를 ture로 설정
+                setModal(true);
+            }
+        };
+
+        // 컴포넌트가 마운트될 때, 화면 전체에 대한 클릭 이벤트를 감지하는 handleOutsideClick 추가
+        // 사용자가 화면 어디를 클릭하던지간에 클릭 이벤트를 감지
+        document.addEventListener('click', handleOutsideClick);
+
+        // 컴포넌트가 언마운트될 때.
+        // 컴포넌트가 더 이상 화면에 렌더링되지 않을 때 해당 이벤트 리스너를 더 이상 유지할 필요가 없기 때문 이벤트 리스너 제거
+        return () => {
+            document.removeEventListener('click', handleOutsideClick);
+        };
+    }, [modal]);
 
     return (
         <div className='portfolio-block'>
