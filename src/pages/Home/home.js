@@ -51,13 +51,13 @@ export default function Home() {
 
     return (
         <>
-            <div 
-            id="App"
-            className={
-                cookie != undefined && cookie == 'light'
-                ? 'light-mode'
-                : null
-            } >
+            <div
+                id="App"
+                className={
+                    cookie != undefined && cookie == 'light'
+                        ? 'light-mode'
+                        : null
+                } >
                 <Background />
                 <header id='header'>
                     <div className='header-nav'>
@@ -84,17 +84,18 @@ export default function Home() {
                         </nav>
                     </div>
                     <div className='header-mode'>
-                        <Light/>
+                        <Light />
                     </div>
+
                 </header>
 
                 <div className='container'>
                     <div className='container-content'>
 
                         <section id='home'>
-                            <Homecmpt scrollCallBack={scrollCallBack}/>
+                            <Homecmpt scrollCallBack={scrollCallBack} />
                         </section>
-                        
+
                         <section id='aboutme' >
                             <Aboutme />
                         </section>

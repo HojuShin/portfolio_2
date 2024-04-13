@@ -1,3 +1,28 @@
+/* 
+@keyframes fade-up {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+} */
+
+@keyframes fade-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+
 .modal-section {
     position: fixed;
     inset: 0;
@@ -79,6 +104,7 @@
 }
 
 .modal-link {
+    animation: fade-up 4.5s;
     position: fixed;
     background-color: #1b1b1b;
     color: #eee;
@@ -130,7 +156,7 @@
     /* max-width: 1620px; */
     /* margin: 0 auto; */
     text-align: center;
-    height: 100%;
+    /* height: 100%; */
 }
 
 .modal-content-title {
@@ -180,7 +206,7 @@
 }
 
 .mc-desc-main>p {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     line-height: 1.4;
     color: #4e4e4e;
 }
@@ -188,16 +214,44 @@
 .mc-desc-function {
     margin: 12rem 0;
     display: flex;
-    flex-direction: row;
-    gap: 3rem;
+    flex-direction: column;
+    gap: 5rem;
 }
 
 .mc-df-01 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+}
+
+.shot-box01-hidden {
+    display: none;
+}
+
+.shot-box01 {
     flex: 1;
 }
 
+.shot-box01>img {
+    width: 100%;
+}
+
+.shot-box02 {
+    flex: 3;
+}
+
+.shot-box02>video {
+    width: 100%;
+}
+
 .mc-df-02 {
-    flex: 2;
+    display: flex;
+    gap: 5rem;
+    font-size: 2.5rem;
+    line-height: 1.4;
+    color: #4e4e4e;
 }
 
 .mc-df-01>img,
@@ -255,13 +309,13 @@
 .color {
     width: 82px;
     height: 82px;
-    background-color: red;
+    border: 1px solid #eee;
     border-radius: 50%;
 }
 
 .color-circle>p {
     font-size: 2rem;
-    padding-top: 1rem;
+    padding-top: 2rem;
 }
 
 .symbol-color-logo {
@@ -270,13 +324,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem
+    gap: 2rem
 }
 
 .symbol-color-logo>img {
-    width: 82px;
+    /* width: 82px; */
     height: 82px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
 }
 
 .symbol-color-logo {
@@ -300,7 +354,7 @@
 .mc-post-text>p,
 .posting {
     text-align: left;
-    font-size: 2.8rem;
+    font-size: 2.5rem;
 }
 
 .posting {
@@ -318,27 +372,130 @@
     color: #4e4e4e;
 }
 
-/* 
-.mc-skilll-desc>p {
-    font-size: 2.8rem;
-    color: #4e4e4e;
+.posting-noting {
+    text-align: left;
+    font-size: 2rem;
+    padding: 2rem 0;
+    color: #8B8A91;
+    letter-spacing: 0.5px;
 }
 
-.mc-skill-list {
-    padding-top: 8rem;
+.modal-count {
+    color: #8B8A91;
+    font-size: 2rem;
+    width: 100%;
+    height: 20px;
+    margin-bottom: 3rem;
 }
 
-.mc-skill-list>ul{
-        display: flex;
-    flex-direction: row;
-    justify-content: center;
+.minmaxContainer {
+    width: 100%;
+    display: flex;
     align-items: center;
-    gap: 3rem;
+    justify-content: space-between;
 }
 
-.mc-skill-list>ul>li {
-    font-size: 2.8rem;
-    border: 1px solid rgba(34,34,34 , 0.3);
-    padding: 12px 24px; 
-    border-radius: 72px;
-} */
+.min,
+.max {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0px 20px;
+    gap: 4px;
+}
+
+.max {
+    align-items: flex-start;
+    border-left: 2px solid #8B8A91;
+}
+
+.maxHeading,
+.minHeading {
+    font-size: 0.7em;
+    font-weight: 600;
+    color: #8B8A91;
+}
+
+.maxTemp,
+.minTemp {
+    font-size: 0.6em;
+    font-weight: 500;
+    color: #8B8A91;
+}
+
+
+@media only screen and (max-width: 985px) {
+
+    .modal-header,
+    .modal-content {
+        padding: 0 1rem;
+    }
+
+    .mc-desc-main {
+        margin-top: 5rem;
+        padding: 0 0;
+    }
+
+    .mc-desc-main>p {
+        font-size: 1.8rem;
+    }
+
+    .mc-shot-main {
+        padding: 0;
+    }
+
+    .symbol-color,
+    .symbol-logo {
+        padding: 0;
+    }
+
+    .mc-post {
+        padding: 7rem 0 8rem 0;
+    }
+
+    .modal-link-box>p {
+        display: none;
+    }
+
+    .modal-link {
+
+        animation: none;
+        width: 147px;
+        height: 63px;
+        background-color: rgba(27, 27, 27, 0.5);
+        color: #eee;
+        bottom: 0;
+        border-radius: 0;
+    }
+
+    .menu__link {
+        background: none;
+    }
+
+    .menu__link:hover {
+        background-color: transparent
+    }
+
+    .modal-link-box {
+        width: auto;
+    }
+
+    .mc-symbol {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+    }
+
+    .mc-df-01 {
+        flex-direction: column;
+    }
+    .shot-box01>img {
+        width: 31%;
+    }
+
+    .mc-df-02 {
+        flex-direction: column;
+    }
+}
