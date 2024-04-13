@@ -55,7 +55,7 @@ export default function Background() {
                 repeat={false}
             >
                 <div className='background-img-02'>
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="429.6px" height="429.6px" viewBox="0 0 429.6 429.6" style={{ enableBackground: 'new 0 0 429.6 429.6' }} xmlSpace="preserve">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="880px" height="880px" viewBox="0 0 429.6 429.6" style={{ enableBackground: 'new 0 0 429.6 429.6' }} xmlSpace="preserve">
                         <style>
                             {`.bg02 {fill: url(#color-gradient-2);}`}
                         </style>

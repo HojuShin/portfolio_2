@@ -1,12 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
-
-@font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-}
-
 .App,
 .container {
     width: 100%;
@@ -15,9 +6,6 @@
 
 .App {
     position: relative;
-    font-family: "Syne", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
 }
 
 .noise {
@@ -34,7 +22,6 @@
     opacity: 0.03;
     transition: opacity .2s cubic-bezier(.445, .05, .55, .95);
     visibility: visible;
-    /*   원본 페이지 : https://www.rawlab.co */
 }
 
 .background-img {
@@ -43,7 +30,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow-x: clip;
 }
 
 .background-img-01 {
@@ -64,9 +51,9 @@
 .background-img-02 {
     position: absolute;
     top: 49vh;
-    left: 1vw;
-    width: 425px;
-    height: 425px;
+    left: -8vw;
+    width: 880px;
+    height: 880px;
 }
 
 #header {
@@ -121,15 +108,65 @@ nav li.active {
     border: 0.5px solid rgba(255, 255, 255, 0.3);
 }
 
-.lightmode {
+.lighmode-btn {
+    position: relative;
+    background-color: transparent;
+    cursor: pointer;
+    overflow: hidden;
     height: 6rem;
     line-height: 6rem;
     padding: 0 2.4rem;
     font-size: 2rem;
+    border: none;
     border-radius: 3rem;
-    background: -moz-linear-gradient(90deg, rgba(255, 218, 234, 1) 23%, rgba(196, 213, 235, 1) 75%);
+    background: -mozlinear-gradient(90deg, rgba(255, 218, 234, 1) 23%, rgba(196, 213, 235, 1) 75%);
     background: -webkit-linear-gradient(90deg, rgba(255, 218, 234, 1) 23%, rgba(196, 213, 235, 1) 75%);
     background: linear-gradient(90deg, rgba(255, 218, 234, 1) 23%, rgba(196, 213, 235, 1) 75%);
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.lighmode-btn::before {
+    content: attr(data-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transform: translate(0%, 90%);
+    z-index: 99;
+    position: relative;
+    transform-origin: bottom;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.lighmode-btn::after {
+    content: attr(data-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transform-origin: top;
+    transform: translate(0%, -100%);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.lighmode-btn:hover::before {
+    transform: translate(0%, 0%);
+}
+
+.lighmode-btn:hover::after {
+    transform: translate(0%, -200%)
+}
+
+.lighmode-btn:focus {
+    outline: none;
+}
+
+.lighmode-btn:active {
+    scale: 0.95;
 }
 
 .container {
@@ -155,7 +192,7 @@ section {
 
 .home-desc {
     color: white;
-    padding: 0 0 30px 50px;
+    padding: 0 0 50px 0;
 }
 
 .home-desc>h1 {
@@ -187,6 +224,53 @@ section {
     height: 150px;
 }
 
+/* rotating btn */
+.arrow-down-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-decoration: none;
+    color: #e8e8e8;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border: none;
+    overflow: hidden;
+    background: transparent;
+    transition: all 0.6s
+}
+
+.arrow-down-button span,
+.arrow-down-button span::before {
+    position: absolute;
+    top: 0%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../assets/down.png') no-repeat;
+    background-size: contain;
+    /* 이미지를 요소에 맞게 크기 조정 */
+    background-position: center;
+    /* 이미지를 가운데 정렬 */
+    width: 32px;
+    height: 32px;
+    content: "";
+    /* 가상 요소에 내용(content)을 추가. */
+    display: inline-block;
+    /* 가상 요소가 보이도록 display를 설정. */
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    justify-content: center;
+    transition: all 0.6s
+}
+
+.rotating-btn:hover span {
+    animation: slide-in-top 0.6s both;
+}
+
+
 @keyframes rotateText {
     0% {
         transform: rotate(0deg);
@@ -197,28 +281,24 @@ section {
     }
 }
 
-.ph-bold {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+@keyframes slide-in-top {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
-.ph-bold.ph-arrow-down:before {
-    background: url('../assets/down.png') no-repeat;
-    background-size: contain; /* 이미지를 요소에 맞게 크기 조정 */
-    background-position: center; /* 이미지를 가운데 정렬 */
-    width: 32px;
-    height: 32px;
-    content: ""; /* 가상 요소에 내용(content)을 추가. */
-    display: inline-block; /* 가상 요소가 보이도록 display를 설정. */
-}
 
 /* about me */
 
 .aboutme-block {
-    margin: 150px 0;
-    /* height: 100%; */
+    padding: 150px 0;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -235,9 +315,39 @@ section {
     border: 1px solid rgba(255, 255, 255, 0.3);
     width: 33%;
     padding: 0 2.5rem;
-    height: 12.5vw;
+    height: 12vw;
     border-radius: 3.5rem;
+    background: #1b1b1b;
     /* margin: 20px 0 50px 0; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.box01>p {
+    letter-spacing: -0.2rem;
+    font-variant-numeric: lining-nums;
+    background: linear-gradient(90deg, rgba(255, 218, 234, 1) 50%, rgba(196, 213, 235, 1) 50%);
+    font-weight: bold;
+    color: transparent;
+    -webkit-background-clip: text;
+    font-size: 8rem;
+}
+
+.box02>p {
+    color: #eee;
+    font-size: 2.5rem;
+}
+
+.textcolor {
+    color: #8B8A91;
+}
+
+.nextjs {
+    fill: white;
+    margin-left: 1.3rem;
 }
 
 .aboutme-desc {
@@ -254,14 +364,12 @@ section {
 }
 
 .aboutme-desc-text>p {
-    font-family: 'Pretendard-Regular';
     color: #eee;
     font-size: 2.4rem;
     line-height: 1.5;
 }
 
 .aboutme-desc-text-btn>button {
-    font-family: 'Pretendard-Regular';
     cursor: pointer;
     border: none;
     height: 6rem;
@@ -278,7 +386,6 @@ section {
 }
 
 .adress-card {
-    font-family: 'Pretendard-Regular';
     color: #eee;
     margin-bottom: 3.5rem;
 }
@@ -296,7 +403,7 @@ section {
 .adress-card>a {
     margin-right: 15px;
     color: #eee;
-    font-size: 2rem;
+    font-size: 2.4rem;
     text-decoration: none;
     transition: all .3s;
     position: relative;
@@ -359,7 +466,7 @@ section {
 
 .skill-desc-title {
     flex: 1;
-    color: #C7C6D3;
+    color: #8B8A91;
 }
 
 .skill-desc-text {
@@ -369,7 +476,6 @@ section {
 
 .skill-desc-text>h4 {
     line-height: 1.3;
-    font-family: 'Pretendard-Regular';
 }
 
 .skill-desc-logo {
@@ -382,6 +488,28 @@ section {
 
 .skill-desc-logo>ul>li {
     display: inline;
+    position: relative;
+}
+
+.tooltip {
+    position: absolute;
+    top: -57px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 1.7rem;
+    transition: all 0.3s ease;
+}
+
+.skill-desc-logo>ul>li:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    top: -77px;
 }
 
 .skill-desc-bottom {
@@ -410,18 +538,19 @@ section {
 }
 
 .portfolio-projects {
+    margin: 3.5rem 0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    gap: 3rem;
     /* 수평 가운데 정렬 */
 }
 
 .project {
-    width: 42%;
+    width: 49%;
     padding: 3rem;
-    margin: 3.5rem;
     backdrop-filter: blur(8px);
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -433,8 +562,8 @@ section {
     gap: 30px;
     border-radius: 4.7rem;
     cursor: pointer;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
     transition: all 0.3s ease-in-out;
 }
 
@@ -456,10 +585,10 @@ section {
 }
 
 .project:hover {
-    -webkit-transform: translateY(-0.4rem);
-    -moz-transform: translateY(-0.4rem);
-    -ms-transform: translateY(-0.4rem);
-    transform: translateY(-0.4rem);
+    /* -webkit-transform: translateY(-0.4rem) !important;
+    -moz-transform: translateY(-0.4rem) !important;
+    -ms-transform: translateY(-0.4rem) !important;
+    transform: translateY(-0.4rem) !important; */
     /* -webkit-filter: drop-shadow(0 0 55px rgb(137 102 221 / 0.15));
     filter: drop-shadow(0 0 55px rgb(137 102 221 / 0.15)); */
     -webkit-filter: drop-shadow(0 0 55px rgb(137, 102, 221, 0.3));
@@ -471,16 +600,41 @@ section {
     justify-content: center;
     align-items: center;
     gap: 5px;
+    transition: all 0.5s;
+}
+
+.view-btn>span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.view-btn>span::after {
+    content: '>';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;
+    transition: 0.5s;
+}
+
+.project:hover .view-btn>span {
+    padding-right: 15px;
+}
+
+.project:hover .view-btn>span::after {
+    opacity: 1;
+    right: 0;
 }
 
 .material-symbols-outlined {
     transition: transform 0.3s ease;
 }
 
-.view-btn:hover .material-symbols-outlined {
+/* .view-btn:hover .material-symbols-outlined {
     transform: translateX(10px);
-    /* 마우스를 올렸을 때 오른쪽으로 10px 이동 */
-}
+} */
 
 /* contact */
 .contact-block {
@@ -506,7 +660,6 @@ section {
 }
 
 .contact-text>h2 {
-    font-family: 'Pretendard-Regular';
     margin: 0 auto;
     font-weight: 500;
     color: #eee;
@@ -526,9 +679,57 @@ section {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    font-family: 'Syne' !important;
 }
 
 .adress>h4 {
     color: #8B8A91;
     padding-bottom: 3px;
+}
+
+@media screen and (min-width: 2400px) {
+
+    .background-img-01 {
+        top: -39vh;
+    }
+
+    .background-img-01 {
+        right: -9vw;
+    }
+
+    .background-img-02 {
+        top: 57vh;
+        left: -5vw;
+    }
+
+    .background-img-01>svg,
+    .background-img-01 {
+        width: 1180px !important;
+        height: 1180px !important;
+    }
+
+    .background-img-02>svg,
+    .background-img-02 {
+        width: 1180px !important;
+        height: 1080px !important;
+    }
+
+
+    .home-desc>h1 {
+        font-size: 12rem;
+        line-height: 13rem;
+    }
+
+    .home-desc {
+        padding: 0 0 63px 0;
+    }
+
+    .rotating-btn {
+        margin-bottom: 6.3rem;
+    }
+
+    .rotating-btn__link svg {
+        width: 187px;
+        height: 187px;
+    }
 }

@@ -71,9 +71,10 @@ export default function Home() {
                         </nav>
                     </div>
                     <div className='header-mode'>
-                        <div className='lightmode'>
-                            <p>Light Mode</p>
-                        </div>
+                        <div className='lighmode-btn' data-text="Light Mode">
+                            {/* <p>Light Mode</p> */}
+                          </div>
+                       
                     </div>
                 </header>
 
@@ -83,6 +84,7 @@ export default function Home() {
                         <section id='home'>
                             <Homecmpt scrollCallBack={scrollCallBack}/>
                         </section>
+                        
                         <section id='aboutme' >
                             <Aboutme />
                         </section>
@@ -101,7 +103,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            {/* <div className="noise"></div> */}
+            <div className="noise"></div>
         </>
     );
 }

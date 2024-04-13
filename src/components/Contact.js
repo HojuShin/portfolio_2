@@ -9,7 +9,7 @@ export default function Contact() {
                     duration={1}
                     amount="sm"
                     delay={0.1}
-                    repeat
+                   repeat={false}
                 >
                     <h1>Contact me</h1>
                 </ScrollAnimation>
@@ -18,7 +18,7 @@ export default function Contact() {
                     duration={1}
                     amount="sm"
                     delay={0.1}
-                    repeat
+                   repeat={false}
                 >
                     <h2>함께 일하고 싶은 열정적인 퍼블리셔를 만나보세요</h2>
                 </ScrollAnimation>
