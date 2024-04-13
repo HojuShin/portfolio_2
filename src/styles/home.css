@@ -1,13 +1,19 @@
-.App,
+#App,
 .container {
     width: 100%;
     height: 100%;
 }
 
-.App {
+#App {
     position: relative;
 }
 
+.light-mode {
+    background: white;
+}
+.modal-open {
+    overflow: hidden;
+  }
 .noise {
     position: fixed;
     left: 0;
@@ -71,9 +77,15 @@
     -webkit-backdrop-filter: none;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* 수정 */
+    justify-content: end;
     font-weight: 600;
     z-index: 9999;
+}
+
+/* 수정 */
+.header-mode{
+    display: none;
 }
 
 .header-nav {
@@ -329,11 +341,16 @@ section {
 .box01>p {
     letter-spacing: -0.2rem;
     font-variant-numeric: lining-nums;
-    background: linear-gradient(90deg, rgba(255, 218, 234, 1) 50%, rgba(196, 213, 235, 1) 50%);
+    background: linear-gradient(90deg, rgba(255, 218, 234, 1) 36%, rgba(196, 213, 235, 1) 42%);
     font-weight: bold;
     color: transparent;
     -webkit-background-clip: text;
     font-size: 8rem;
+}
+
+.box-text {
+    font-size: 2.5rem;
+    margin-left: 1rem;
 }
 
 .box02>p {
@@ -544,12 +561,12 @@ section {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 3rem;
+    gap: 5rem;
     /* 수평 가운데 정렬 */
 }
 
 .project {
-    width: 49%;
+    width: 48%;
     padding: 3rem;
     backdrop-filter: blur(8px);
     border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -731,5 +748,89 @@ section {
     .rotating-btn__link svg {
         width: 187px;
         height: 187px;
+    }
+}
+
+@media only screen and (max-width: 985px) {
+    #header {
+        display: none;
+    }
+
+    .container-content {
+        padding: 0 1.5rem;
+    }
+
+    .home-desc>h1 {
+        line-height: 8rem;
+        font-size: 6rem;
+    }
+
+    .aboutme-box {
+        flex-direction: column;
+    }
+
+    .box {
+        width: 100%;
+        padding: 8.5rem 2.5rem;
+    }
+
+    section {
+        height: 100%;
+    }
+
+    .aboutme-desc {
+
+        flex-direction: column;
+    }
+
+    .aboutme-desc-text {
+        width: 100%;
+    }
+
+    .aboutme-desc-text>p {
+        font-size: 2.3rem;
+        color: #C7C6D3;
+    }
+
+    .aboutme-desc-text>p:nth-child(2) {
+        margin-top: 3rem;
+    }
+
+    .adress-card>h3 {
+        font-size: 1.9rem;
+    }
+
+    .adress-card>p {
+        font-size: 2.3rem;
+    }
+
+    .skill-desc-text {
+        display: none;
+    }
+
+    .project {
+        width: 100%;
+    }
+
+    .portfolio-projects {
+        gap: 5rem;
+    }
+
+    .contact-text {
+        flex-direction: column;
+        gap: 5rem;
+        margin-bottom: 18rem;
+    }
+
+    .contact-text>h2 {
+        font-size: 2.6rem;
+    }
+
+    .contact-info-adress {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 4rem;
+        align-items: flex-start;
+        padding: 5.5rem 0;
     }
 }

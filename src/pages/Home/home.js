@@ -6,8 +6,15 @@ import Portfolio from '../../components/Portfolio';
 import Contact from '../../components/Contact';
 import Aboutme from '../../components/Aboutme';
 import Skill from '../../components/Skill';
+import Light from '../../components/Light';
+import { useCookies } from 'react-cookie';
 
 export default function Home() {
+
+    // 쿠키값 가져오기
+    const [cookies] = useCookies(['mode']);
+
+    const cookie = cookies['mode'];
 
     const [position, setPosition] = useState('home')
 
@@ -41,11 +48,17 @@ export default function Home() {
         };
     }, []); // useEffect는 한 번만 실행되도록 빈 배열을 전달합니다.
 
+
     return (
         <>
-            <div className="App">
+            <div 
+            id="App"
+            className={
+                cookie != undefined && cookie == 'light'
+                ? 'light-mode'
+                : null
+            } >
                 <Background />
-
                 <header id='header'>
                     <div className='header-nav'>
                         <nav>
@@ -71,10 +84,7 @@ export default function Home() {
                         </nav>
                     </div>
                     <div className='header-mode'>
-                        <div className='lighmode-btn' data-text="Light Mode">
-                            {/* <p>Light Mode</p> */}
-                          </div>
-                       
+                        <Light/>
                     </div>
                 </header>
 

@@ -25,10 +25,12 @@ export default function Portfolio() {
             const url = new URLSearchParams(location.search);
             url.delete('id');
             navigate({ search: url.toString() });
+            document.body.classList.remove('modal-open');
         } else {
             const url = new URLSearchParams(location.search);
             url.set('id', project.id);
             navigate({ search: url.toString() });
+            document.body.classList.add('modal-open');
         }
     }
 

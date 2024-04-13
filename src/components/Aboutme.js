@@ -1,6 +1,7 @@
 import { ScrollAnimation } from "@lasbe/react-scroll-animation";
 
 export default function Aboutme() {
+
     return (
         <>
             <div className='aboutme-block' >
@@ -25,10 +26,10 @@ export default function Aboutme() {
                     >
                         <div className='box'>
                             <div className="box01">
-                                <p>5+</p>
+                                <p>266<span className="box-text">일</span></p>
                             </div>
                             <div className="box02">
-                                <p>프로젝트 완성</p>
+                                <p>지속적 학습</p>
                             </div>
                         </div>
                     </ScrollAnimation>
@@ -41,7 +42,7 @@ export default function Aboutme() {
                     >
                         <div className='box'>
                             <div className="box01">
-                                <p>8+</p>
+                                <p>8<span className="box-text">개</span></p>
                             </div>
                             <div className="box02">
                                 <p>보유 스킬</p>
@@ -57,10 +58,10 @@ export default function Aboutme() {
                     >
                         <div className='box'>
                             <div className="box01">
-                                <p>4+</p>
+                                <p>4<span className="box-text">개</span></p>
                             </div>
                             <div className="box02">
-                                <p>프로젝트 완성</p>
+                                <p>프로젝트 경험</p>
                             </div>
                         </div>
                     </ScrollAnimation>
@@ -137,6 +138,9 @@ export default function Aboutme() {
                                     <h3>Tech Blog</h3>
                                     <a href='https://github.com/HojuShin' target='_blank'>
                                         GitHub
+                                    </a>
+                                    <a href='https://velog.io/@tlsghwn/posts' target='_blank'>
+                                        velog
                                     </a>
                                     <a href='https://shj0318.tistory.com/' target='_blank'>
                                         tistory
